@@ -61,7 +61,6 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
 
  //comparar un  puntero con el otro
  int tam=0;
- int valor;
  int valor_temp=0;
  int repetidos=0;
  char espacio1[40];
@@ -74,8 +73,19 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
        {
            valor_temp=arrIn1->pdata[i];
            repetidos++;
+              for (int a = 0; a < tam; a++)
+              {
+               if (espacio1[a] ==valor_temp)
+               {
+                   repetidos++;
+                   a=tam;
+               }
+               
+              }
+           
             if (repetidos==1)
-            {         
+            {       
+                  
              espacio1[tam]=valor_temp;
              tam++;
             }
@@ -83,7 +93,6 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
     }
        repetidos=0;
  }
-
 
      arrOut->size=tam;
      arrOut->pdata = malloc(sizeof(int)*arrOut->size);
