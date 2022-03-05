@@ -38,7 +38,7 @@ void getArray(struct array *parr)
 {
     char espacio1[40];
     int valor;
-  if (fgets(espacio1, 40, stdin) != NULL)
+    if (fgets(espacio1, 40, stdin) != NULL)
     {
       espacio1[strlen(espacio1)-1] = 0;
 
@@ -50,7 +50,7 @@ void getArray(struct array *parr)
      {
          if (fgets(espacio1, 40, stdin) != NULL)
          {
-            valor =sscanf(espacio1," %d ", parr->pdata+i);
+           sscanf(espacio1," %d ", parr->pdata+i);
          }
      }
     }
@@ -58,7 +58,37 @@ void getArray(struct array *parr)
 
 void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut)
 {
-    
+
+ //comparar un  puntero con el otro
+ int tam=0;
+ int valor;
+ char espacio1[40];
+
+ for (int i = 0; i < arrIn1->size ; i++)
+ {
+    for (int j = 0; j < arrIn2->size ; j++)
+    {
+     if (arrIn1->pdata[i] == arrIn2->pdata[j])
+     {
+        printf("hay igual ");
+        espacio1[tam]=arrIn1->pdata[i] ;
+        tam++;
+     }
+     
+    }
+ }
+
+
+     arrOut->size=tam;
+     arrOut->pdata = malloc(sizeof(int)*arrOut->size);
+
+  for (int j = 0; j < arrOut->size ; j++)
+    {
+        *(arrOut->pdata+j)=espacio1[j]; 
+        
+    }
+
+
 }
 
 void freeMemory(struct array *arr1, struct array *arr2, struct array *arr3)
