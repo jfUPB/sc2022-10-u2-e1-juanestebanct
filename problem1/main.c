@@ -70,7 +70,6 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
     {
      if (arrIn1->pdata[i] == arrIn2->pdata[j])
      {
-        printf("hay igual ");
         espacio1[tam]=arrIn1->pdata[i] ;
         tam++;
      }
