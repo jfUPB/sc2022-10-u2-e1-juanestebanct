@@ -62,19 +62,26 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
  //comparar un  puntero con el otro
  int tam=0;
  int valor;
+ int valor_temp=0;
+ int repetidos=0;
  char espacio1[40];
 
  for (int i = 0; i < arrIn1->size ; i++)
  {
     for (int j = 0; j < arrIn2->size ; j++)
     {
-     if (arrIn1->pdata[i] == arrIn2->pdata[j])
-     {
-        espacio1[tam]=arrIn1->pdata[i] ;
-        tam++;
-     }
-     
+       if (arrIn1->pdata[i] == arrIn2->pdata[j])
+       {
+           valor_temp=arrIn1->pdata[i];
+           repetidos++;
+            if (repetidos==1)
+            {         
+             espacio1[tam]=valor_temp;
+             tam++;
+            }
+       }
     }
+       repetidos=0;
  }
 
 
