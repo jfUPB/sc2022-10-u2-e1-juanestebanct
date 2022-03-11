@@ -36,12 +36,74 @@ void printArray(struct array *parr)
 
 void getArray(struct array *parr)
 {
-    
+    char espacio1[40];
+    int valor;
+    if (fgets(espacio1, 40, stdin) != NULL)
+    {
+      espacio1[strlen(espacio1)-1] = 0;
+
+      sscanf(espacio1," %d ", &parr->size);
+
+      parr->pdata = malloc(sizeof(int)*parr->size);
+      
+     for (int i = 0; i < parr->size; i++)
+     {
+         if (fgets(espacio1, 40, stdin) != NULL)
+         {
+           sscanf(espacio1," %d ", parr->pdata+i);
+         }
+     }
+    }
 }
 
 void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut)
 {
-    
+
+ //comparar un  puntero con el otro
+ int tam=0;
+ int valor_temp=0;
+ int repetidos=0;
+ char espacio1[40];
+
+ for (int i = 0; i < arrIn1->size ; i++)
+ {
+    for (int j = 0; j < arrIn2->size ; j++)
+    {
+       if (arrIn1->pdata[i] == arrIn2->pdata[j])
+       {
+           valor_temp=arrIn1->pdata[i];
+           repetidos++;
+              for (int a = 0; a < tam; a++)
+              {
+               if (espacio1[a] ==valor_temp)
+               {
+                   repetidos++;
+                   a=tam;
+               }
+               
+              }
+           
+            if (repetidos==1)
+            {       
+                  
+             espacio1[tam]=valor_temp;
+             tam++;
+            }
+       }
+    }
+       repetidos=0;
+ }
+
+     arrOut->size=tam;
+     arrOut->pdata = malloc(sizeof(int)*arrOut->size);
+
+  for (int j = 0; j < arrOut->size ; j++)
+    {
+        *(arrOut->pdata+j)=espacio1[j]; 
+        
+    }
+
+
 }
 
 void freeMemory(struct array *arr1, struct array *arr2, struct array *arr3)
